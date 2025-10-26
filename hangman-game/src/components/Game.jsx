@@ -9,7 +9,6 @@ export default function Game() {
   );
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState(0);
-
   const maxWrongGuesses = 6;
 
   const handleGuess = (letter) => {
@@ -51,6 +50,7 @@ export default function Game() {
           isLoser={isLoser}
           handleGuess={handleGuess}
           guessedLetters={guessedLetters}
+          word={word}
         />
         {isWinner && <h3>Congratulations! You've won!</h3>}
         {isLoser && <h3>Game over! The word was: {word}</h3>}

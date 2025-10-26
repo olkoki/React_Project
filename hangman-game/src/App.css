@@ -20,3 +20,15 @@ body {
   border: none;
   background-color: transparent;
 }
+
+#black {
+  color: black;
+}
+
+#red {
+  color: red;
+}
+
+#green {
+  color: green;
+}
