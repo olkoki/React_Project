@@ -13,26 +13,52 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.keyboard {
+  margin-left: 25%;
+  margin-top: 10%;
+  width: 48%;
+  height: 25vh;
 }
 
-.App-link {
-  color: #61dafb;
+.letter-key {
+  margin: 0.1rem 0.2rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  border: none;
+  background-color: transparent;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#black {
+  color: black;
+}
+
+#red {
+  color: red;
+}
+
+#green {
+  color: green;
+}
+
+.game-board {
+  max-width: 500px;
+  margin: auto;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.letter-key {
+  margin: 2px;
+  padding: 8px 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.letter-key:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
