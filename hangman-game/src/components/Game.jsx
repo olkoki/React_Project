@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import GameBoard from "./GameBoard";
 
-const wordsList = ['javascript', 'react', 'hangman', 'component', 'state']; //temporary
+const wordsList = ["JAVASCRIPT", "REACT", "HANGMAN", "COMPONENT", "STATE"]; //temporary
 
 export default function Game() {
   const [word, setWord] = useState(
@@ -15,9 +15,10 @@ export default function Game() {
   const [hintsLeft, setHintsLeft] = useState(maxHints);
 
 
-    const handleGuess = (letter) => {
-        if (guessedLetters.includes(letter)) return; //ignore already guessed letters
-        setGuessedLetters((prev) => [...prev, letter]);
+  const handleGuess = (letter) => {
+    console.log("you clicked letter " + letter);
+    if (guessedLetters.includes(letter)) return; //ignore already guessed letters
+    setGuessedLetters((prev) => [...prev, letter]);
 
     if (!word.toUpperCase().includes(letter)) {
       setWrongGuesses((prev) => prev + 1);
@@ -46,7 +47,10 @@ export default function Game() {
     .every((letter) => guessedLetters.includes(letter));
   const isLoser = wrongGuesses >= maxWrongGuesses;
 
-    const displayWord = word.split('').map(letter => (guessedLetters.includes(letter) ? letter : '_')).join(' ');
+  const displayWord = word
+    .split("")
+    .map((letter) => (guessedLetters.includes(letter) ? letter : "_"))
+    .join(" ");
 
   const resetGame = () => {
     setWord(wordsList[Math.floor(Math.random() * wordsList.length)]);
