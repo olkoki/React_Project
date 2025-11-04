@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getWord } from "../lib/getWord";
 import GameBoard from "./GameBoard";
 
-const wordsList = ["JAVASCRIPT", "REACT", "HANGMAN", "COMPONENT", "STATE"]; //temporary
-
 export default function Game() {
-  const [word, setWord] = useState(
-    wordsList[Math.floor(Math.random() * wordsList.length)]
-  );
+  const [word, setWord] = useState("");
+  const [loading, setLoading] = useState(true);
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState(0);
   const maxWrongGuesses = 6;
@@ -14,6 +12,14 @@ export default function Game() {
   const maxHints = 3; // total hints per round
   const [hintsLeft, setHintsLeft] = useState(maxHints);
 
+  useEffect(() => {
+    getWord().then((w) => {
+      setWord(w);
+      // so we can make sure everything is working
+      console.log("Fetched word:", w);
+      setLoading(false);
+    });
+  }, []);
 
   const handleGuess = (letter) => {
     console.log("you clicked letter " + letter);
@@ -32,7 +38,7 @@ export default function Game() {
       .toUpperCase()
       .split("")
       .filter((letter) => !guessedLetters.includes(letter));
-    
+
     if (remainingLetters.length === 0) return; // all letters already guessed
 
     const randomLetter =
@@ -52,29 +58,40 @@ export default function Game() {
     .map((letter) => (guessedLetters.includes(letter) ? letter : "_"))
     .join(" ");
 
-  const resetGame = () => {
-    setWord(wordsList[Math.floor(Math.random() * wordsList.length)]);
+  const resetGame = async () => {
+    setLoading(true);
     setGuessedLetters([]);
     setWrongGuesses(0);
     setHintsLeft(maxHints);
+
+    try {
+      const newWord = await getWord();
+      // so we can still see the new word
+      console.log("New fetched word:", newWord);
+      setWord(newWord);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (loading) return <p>Loading word...</p>;
 
   return (
     <>
-    <GameBoard
-      displayWord={displayWord}
-      wrongGuesses={wrongGuesses}
-      maxWrongGuesses={maxWrongGuesses}
-      isWinner={isWinner}
-      isLoser={isLoser}
-      guessedLetters={guessedLetters}
-      word={word}
-      handleGuess={handleGuess}
-      resetGame={resetGame}
-      useHint={useHint}
-      hintsLeft={hintsLeft}
-      maxHints={maxHints}
-    />
+      <GameBoard
+        displayWord={displayWord}
+        wrongGuesses={wrongGuesses}
+        maxWrongGuesses={maxWrongGuesses}
+        isWinner={isWinner}
+        isLoser={isLoser}
+        guessedLetters={guessedLetters}
+        word={word}
+        handleGuess={handleGuess}
+        resetGame={resetGame}
+        useHint={useHint}
+        hintsLeft={hintsLeft}
+        maxHints={maxHints}
+      />
     </>
   );
 }
