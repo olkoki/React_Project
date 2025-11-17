@@ -1,0 +1,110 @@
+:root {
+  --stand-border: 2px solid #000;
+  --stickman-border: 1px solid #000;
+  --stickman-color: #000;
+}
+
+.container {
+  width: 20vw;
+  height: 30vw; /* keeps the same aspect ratio */
+  max-width: 130px;
+  max-height: 200px;
+  position: relative;
+  margin: auto;
+}
+
+.topStand {
+  height: 100%;
+  width: 80%;
+  position: absolute;
+  border: var(--stand-border);
+  border-right: none;
+  border-bottom: none;
+}
+
+.bottomStand {
+  position: absolute;
+  top: 100%;
+  right: 70%;
+  border-top: var(--stand-border);
+  width: 60%;
+}
+
+.rope {
+  position: absolute;
+  top: 0;
+  right: 40%;
+  border-left: var(--stand-border);
+  height: 20%;
+}
+
+.head {
+  position: absolute;
+  top: 20%;
+  right: 24%;
+  width: 30%;
+  height: 20%;
+  border: var(--stand-border);
+  border-radius: 50%;
+}
+
+.body {
+  position: absolute;
+  top: 41%;
+  right: 40%;
+  width: 2px;
+  height: 40%;
+  background-color: var(--stickman-color);
+}
+
+.leftArm {
+  position: absolute;
+  top: 50%;
+  right: 40%;
+  width: 25%;
+  height: 2px;
+  background-color: var(--stickman-color);
+  transform: rotate(-45deg);
+  transform-origin: right;
+}
+
+.rightArm {
+  position: absolute;
+  top: 51%;
+  right: 40%;
+  width: 25%;
+  height: 2px;
+  background-color: var(--stickman-color);
+  transform: rotate(-140deg);
+  transform-origin: right;
+}
+
+.rightLeg {
+  position: absolute;
+  top: 80%;
+  right: 41%;
+  width: 25%;
+  height: 2px;
+  background-color: var(--stickman-color);
+  transform: rotate(-140deg);
+  transform-origin: right;
+}
+
+.leftLeg {
+  position: absolute;
+  top: 80%;
+  right: 41%;
+  width: 25%;
+  height: 2px;
+  background-color: var(--stickman-color);
+  transform: rotate(-45deg);
+  transform-origin: right;
+}
+.deadFace {
+  position: absolute;
+  display: flex;
+  top: 24%;
+  right: 32%;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+}
