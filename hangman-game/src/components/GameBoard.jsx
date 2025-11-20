@@ -17,17 +17,21 @@ export default function GameBoard({
   hintsLeft,
   maxHints,
   useHint,
+  openCategoriesOverlay,
+  selectedCategoryName,
 }) {
   return (
     <div style={{textAlign: "center", marginTop: "40px"}}>
       <Header 
         playerName="Alice" //placeholder
-        category="Programming" //placeholder
+        category={selectedCategoryName || "Movies"}
+        openCategoriesOverlay={openCategoriesOverlay}
         wrongGuesses={wrongGuesses}
         maxWrongGuesses={maxWrongGuesses}
       />
-        <div className="game-board" style={{ textAlign: "center", marginTop: "40px" }}>
-        <h1>Hangman Game</h1>
+        <div className="game-board" style={{ textAlign: "center", marginTop: "40px"}}>
+
+        
 
         {/* Word display */}
         <div

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getWord } from "../lib/getWord";
 import GameBoard from "./GameBoard";
+import CategoryOverlay from "./CategoryOverlay";
 
 export default function Game() {
   const [word, setWord] = useState("");
@@ -12,13 +13,26 @@ export default function Game() {
   const maxHints = 3; // total hints per round
   const [hintsLeft, setHintsLeft] = useState(maxHints);
 
-  useEffect(() => {
-    getWord().then((w) => {
-      setWord(w);
-      // so we can make sure everything is working
-      console.log("Fetched word:", w);
+  const [showCategories, setShowCategories] = useState(false);
+  const [selectedCategoryName, setSelectedCategoryName] = useState(null); // null = default/API
+
+  // Fetch word from API or fallback
+  const fetchWord = async () => {
+    setLoading(true);
+    try {
+      const newWord = await getWord();
+      console.log("Fetched word:", newWord);
+      setWord(newWord);
+    } finally {
       setLoading(false);
-    });
+      setGuessedLetters([]);
+      setWrongGuesses(0);
+      setHintsLeft(maxHints);
+    }
+  };
+
+  useEffect(() => {
+    fetchWord();
   }, []);
 
   const handleGuess = (letter) => {
@@ -43,7 +57,7 @@ export default function Game() {
 
     const randomLetter =
       remainingLetters[Math.floor(Math.random() * remainingLetters.length)];
-
+    
     setGuessedLetters((prev) => [...prev, randomLetter]);
     setHintsLeft((prev) => prev - 1);
   };
@@ -59,19 +73,30 @@ export default function Game() {
     .join(" ");
 
   const resetGame = async () => {
-    setLoading(true);
+    if (!selectedCategoryName) {
+      await fetchWord(); // default/API category
+    } else {
+      setGuessedLetters([]);
+      setWrongGuesses(0);
+      setHintsLeft(maxHints);
+    }
+  };
+
+  const handleSelectCategory = (words, name) => {
+    if (!name) {
+      // Default/API category
+      setSelectedCategoryName(null);
+      fetchWord();
+      return;
+    }
+
+    // Custom category
+    setSelectedCategoryName(name);
+    const randomWord = words[Math.floor(Math.random() * words.length)];
+    setWord(randomWord);
     setGuessedLetters([]);
     setWrongGuesses(0);
     setHintsLeft(maxHints);
-
-    try {
-      const newWord = await getWord();
-      // so we can still see the new word
-      console.log("New fetched word:", newWord);
-      setWord(newWord);
-    } finally {
-      setLoading(false);
-    }
   };
 
   if (loading) return <p>Loading word...</p>;
@@ -91,7 +116,19 @@ export default function Game() {
         useHint={useHint}
         hintsLeft={hintsLeft}
         maxHints={maxHints}
+        openCategoriesOverlay={() => setShowCategories(true)}
+        selectedCategoryName={selectedCategoryName}
       />
+
+      {showCategories && (
+        <CategoryOverlay
+          onClose={() => setShowCategories(false)}
+          onSelectCategory={(words, name) => {
+            handleSelectCategory(words, name);
+            setShowCategories(false);
+          }}
+        />
+      )}
     </>
   );
 }
