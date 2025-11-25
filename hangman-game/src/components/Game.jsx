@@ -20,7 +20,7 @@ export default function Game() {
   const fetchWord = async () => {
     setLoading(true);
     try {
-      const newWord = await getWord();
+      const newWord = await getWord("https://jsonfakery.com/movies/random/1");
       console.log("Fetched word:", newWord);
       setWord(newWord);
     } finally {
