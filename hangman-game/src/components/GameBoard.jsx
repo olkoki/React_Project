@@ -21,13 +21,13 @@ export default function GameBoard({
   return (
     <div style={{textAlign: "center", marginTop: "40px"}}>
       <Header 
-        playerName="Alice" //placeholder
+        playerName="Log In" //placeholder
         category="Programming" //placeholder
         wrongGuesses={wrongGuesses}
         maxWrongGuesses={maxWrongGuesses}
       />
         <div className="game-board" style={{ textAlign: "center", marginTop: "40px" }}>
-        <h1>Hangman Game</h1>
+        {/*<h1>Hangman Game</h1>*/}
 
         {/* Word display */}
         <div
@@ -65,6 +65,11 @@ export default function GameBoard({
             >
                 Use Hint
             </button>
+            <br />
+            {/* Wrong guesses info */}
+      <p style={{ fontSize: "1rem", color: "#888" }}>
+        Wrong guesses: {wrongGuesses} / {maxWrongGuesses}
+      </p>
         </div>
 
         {/* Keyboard */}
@@ -84,10 +89,13 @@ export default function GameBoard({
         <button
             onClick={resetGame}
             style={{
+            width: "300px",  
+            height: "80px",
+            fontSize: "large",
             marginTop: "20px",
             padding: "10px 20px",
             borderRadius: "8px",
-            backgroundColor: "#007bff",
+            backgroundColor: "	#77dd77",
             color: "white",
             border: "none",
             cursor: "pointer",
