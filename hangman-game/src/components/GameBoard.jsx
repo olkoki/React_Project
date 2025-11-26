@@ -4,6 +4,15 @@ import HangmanDrawing from "./HangmanDrawing";
 import Header from "./Header";
 import Hints from "./Hints";
 
+const divStyle = { 
+          backgroundImage: "url('https://img.freepik.com/premium-photo/notebook-paper-background-blank-pages-notebook_322958-6761.jpg?semt=ais_hybrid&w=740&q=80')",
+          
+          backgroundColor: "#ffffff",
+          textAlign: "center", 
+          marginTop: "40px"
+
+};
+
 export default function GameBoard({
   displayWord,
   wrongGuesses,
@@ -32,7 +41,7 @@ export default function GameBoard({
         wrongGuesses={wrongGuesses}
         maxWrongGuesses={maxWrongGuesses}
       />
-        <div className="game-board" style={{ textAlign: "center", marginTop: "40px"}}>
+        <div className="game-board" style={divStyle} >
 
         {/* Word display */}
         <div
