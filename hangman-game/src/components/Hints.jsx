@@ -12,7 +12,7 @@ export default function Hints({ hintsLeft, maxHints = 3 }) {
             transition: "opacity 0.3s",
           }}
         >
-          <img src="https://pngimg.com/uploads/smiley/smiley_PNG74.png" 
+          <img src="https://pbs.twimg.com/profile_images/1676697296325742592/IjHoOQZj_400x400.jpg" 
           style={{height: "40px"}}
             />
         </span>
