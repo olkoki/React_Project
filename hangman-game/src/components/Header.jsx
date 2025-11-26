@@ -41,6 +41,7 @@ export default function Header({
       <p style={{ fontSize: "1rem", color: "#888" }}>
         Wrong guesses: {wrongGuesses} / {maxWrongGuesses}
       </p>*/}
+      
     </header>
   );
 }
