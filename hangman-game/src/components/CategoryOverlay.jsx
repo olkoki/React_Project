@@ -30,6 +30,15 @@ export default function CategoryOverlay({ onClose, onSelectCategory }) {
     setCreating(true);
   };
 
+  const deleteCategory = (cat) => {
+  if (!window.confirm(`Delete category "${cat.name}"?`)) return;
+
+  const updated = categories.filter((c) => c.name !== cat.name);
+  setCategories(updated);
+  localStorage.setItem("categories", JSON.stringify(updated));
+};
+
+
 //   const exportCategory = (category) => {
 //     if (!category) return;
 
@@ -56,36 +65,23 @@ export default function CategoryOverlay({ onClose, onSelectCategory }) {
               <CategoryTile
                 category={{ name: "Movies (default)", words: [] }}
                 onSelect={() => onSelectCategory([], null)}
-                onEdit={null} // no editing
-            />
+                onEdit={null}
+                onDelete={null}
+              />
+
 
               {/* Custom categories */}
               {categories.map((cat, i) => (
                 <CategoryTile
-                    key={i}
-                    category={cat}
-                    onSelect={() => onSelectCategory(cat.words, cat.name)}
-                    onEdit={() => editCategory(cat)}
-                >
-                    {/* Export button inside the tile */}
-                    {/* <button
-                    style={{
-                        padding: "0.25rem 0.5rem",
-                        fontSize: "0.75rem",
-                        marginLeft: "6px",
-                        borderRadius: "4px",
-                        border: "1px solid #ccc",
-                        cursor: "pointer",
-                    }}
-                    onClick={(e) => {
-                        e.stopPropagation(); // prevent triggering onSelect
-                        exportCategory(cat);
-                    }}
-                    >
-                    Export
-                    </button> */}
-                </CategoryTile>
-             ))}
+                  key={i}
+                  category={cat}
+                  onSelect={() => onSelectCategory(cat.words, cat.name)}
+                  onEdit={() => editCategory(cat)}
+                  onDelete={() => deleteCategory(cat)}   // only for custom
+                />
+              ))}
+
+
 
             </div>
 
