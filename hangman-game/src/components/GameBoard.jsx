@@ -89,13 +89,11 @@ export default function GameBoard({
             >
               Use Hint
             </button>
-
-            <br />
-            {/* Wrong guesses info */}
-      <p style={{ fontSize: "1rem", color: "#888" }}>
-        Wrong guesses: {wrongGuesses} / {maxWrongGuesses}
-      </p>
         </div>
+        {/* Wrong guesses info */}
+        <p style={{ fontSize: "1rem", color: "#888" }}>
+          Wrong guesses: {wrongGuesses} / {maxWrongGuesses}
+        </p>
 
         {/* Keyboard */}
         <Keyboard
