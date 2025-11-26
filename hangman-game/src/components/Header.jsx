@@ -1,3 +1,4 @@
+
 import React from "react";
 
 export default function Header({
@@ -63,10 +64,11 @@ export default function Header({
         </span>
       </p>
 
-      {/* Wrong guesses info */}
+      {/* Wrong guesses info 
       <p style={{ fontSize: "1rem", color: "#888" }}>
         Wrong guesses: {wrongGuesses} / {maxWrongGuesses}
-      </p>
+      </p>*/}
+      
     </header>
   );
 }
