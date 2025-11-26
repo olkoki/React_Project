@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Keyboard from "./Keyboard";
 import HangmanDrawing from "./HangmanDrawing";
 import Header from "./Header";
@@ -20,6 +20,7 @@ export default function GameBoard({
   openCategoriesOverlay,
   selectedCategoryName,
 }) {
+  const [hoverReset, setHoverReset] = useState(false)
   return (
     <div style={{textAlign: "center", marginTop: "40px"}}>
       <Header 
@@ -90,22 +91,31 @@ export default function GameBoard({
 
         {/* Reset button */}
         <button
-            onClick={resetGame}
-            style={{
-            width: "300px",  
-            height: "80px",
-            fontSize: "large",
-            marginTop: "20px",
+          onClick={resetGame}
+          onMouseEnter={() => setHoverReset(true)}
+          onMouseLeave={() => setHoverReset(false)}
+          style={{
+            width: "220px",               // slightly wider
+            height: "60px",
+            fontSize: "1.2rem",
+            marginTop: "30px",
             padding: "10px 20px",
-            borderRadius: "8px",
-            backgroundColor: "	#77dd77",
-            color: "white",
-            border: "none",
+            borderRadius: "30px",          // big radius = oval
+            backgroundColor: hoverReset ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.05)",
+            color: hoverReset ? "#000" : "#111",
+            border: "3px solid #000",
             cursor: "pointer",
-            }}
+            fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",
+            transition: "all 0.2s ease-in-out",
+            boxShadow: hoverReset ? "2px 2px 0px #000" : "1px 1px 0px #333",
+            transform: hoverReset ? "scale(1.05) rotate(-1deg)" : "scale(1) rotate(0deg)",
+          }}
         >
-            Play Again
+          Play Again
         </button>
+
+
+
         </div>
     </div>
   );
