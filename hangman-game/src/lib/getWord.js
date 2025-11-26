@@ -6,7 +6,7 @@ function cleaner(w) {
   return w.replace(/[^a-zA-Z]/g, "").toUpperCase();
 }
 
-function fetchWithTimeout(url, options = {}, timeout = 3000) {
+function fetchWithTimeout(url, options = {}, timeout = 1000) {
   return Promise.race([
     fetch(url, options),
     new Promise((_, reject) =>
@@ -20,7 +20,7 @@ export async function fetchRandomWordOnce({ min = 4, max = 10 } = {}) {
   const url = `https://random-word-api.herokuapp.com/word?number=1&length=${setLength}`;
 
   try {
-    const res = await fetchWithTimeout(url, {}, 3000);
+    const res = await fetchWithTimeout(url, {}, 1000);
 
     if (!res.ok) return null;
 
@@ -37,7 +37,8 @@ export async function fetchRandomWordOnce({ min = 4, max = 10 } = {}) {
 }
 
 export async function getWord({ min = 4, max = 10 } = {}) {
-  for (let i = 0; i < 5; i++) {
+  //changed from 3 to 1 attempt
+  for (let i = 0; i < 1; i++){
     const result = await fetchRandomWordOnce({ min, max });
 
     if (!result) continue;
