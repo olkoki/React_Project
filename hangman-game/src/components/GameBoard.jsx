@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Keyboard from "./Keyboard";
 import HangmanDrawing from "./HangmanDrawing";
 import Header from "./Header";
 import Hints from "./Hints";
+
+const divStyle = { 
+          backgroundImage: "url('https://img.freepik.com/premium-photo/notebook-paper-background-blank-pages-notebook_322958-6761.jpg?semt=ais_hybrid&w=740&q=80')",
+          
+          backgroundColor: "#ffffff",
+          textAlign: "center", 
+          marginTop: "40px"
+
+};
 
 export default function GameBoard({
   displayWord,
@@ -20,18 +29,19 @@ export default function GameBoard({
   openCategoriesOverlay,
   selectedCategoryName,
 }) {
+  const [hoverReset, setHoverReset] = useState(false)
+  const [hoverHint, setHoverHint] = useState(false)
   return (
     <div style={{textAlign: "center", marginTop: "40px"}}>
       <Header 
+
         playerName="Alice" //placeholder
         category={selectedCategoryName || "Movies"}
         openCategoriesOverlay={openCategoriesOverlay}
         wrongGuesses={wrongGuesses}
         maxWrongGuesses={maxWrongGuesses}
       />
-        <div className="game-board" style={{ textAlign: "center", marginTop: "40px"}}>
-
-        
+        <div className="game-board" style={divStyle} >
 
         {/* Word display */}
         <div
@@ -56,20 +66,36 @@ export default function GameBoard({
             <Hints hintsLeft={hintsLeft} maxHints={maxHints} />
 
             <button
-                onClick={useHint}
-                disabled={hintsLeft <= 0 || isWinner || isLoser}
-                style={{
-                    padding: "8px 16px",
-                    borderRadius: "8px",
-                    backgroundColor: "#28a745",
-                    color: "white",
-                    border: "none",
-                    cursor: hintsLeft <= 0 ? "not-allowed" : "pointer",
-                }}
+              onClick={useHint}
+              disabled={hintsLeft <= 0 || isWinner || isLoser}
+              onMouseEnter={() => setHoverHint(true)}
+              onMouseLeave={() => setHoverHint(false)}
+              style={{
+                width: "100px",
+                height: "50px",
+                fontSize: "1rem",
+                padding: "4px 10px",
+                borderRadius: "30px",                     
+                backgroundColor: hoverHint ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.05)", 
+                color: hoverHint ? "#000" : "#111",
+                border: "2px solid rgba(0,0,0,0.6)",                
+                cursor: hintsLeft <= 0 ? "not-allowed" : "pointer",
+                fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",
+                transition: "all 0.2s ease-in-out",
+                boxShadow: hoverHint ? "2px 2px 0px #000" : "1px 1px 0px #333",
+                transform: hoverHint ? "scale(1.05) rotate(-1deg)" : "scale(1) rotate(0deg)",
+                opacity: hintsLeft <= 0 ? 0.5 : 1,        // dim if disabled
+              }}
             >
-                Use Hint
+              Use Hint
             </button>
+
+            <br />
         </div>
+        {/* Wrong guesses info */}
+        <p style={{ fontSize: "1rem", color: "#888" }}>
+          Wrong guesses: {wrongGuesses} / {maxWrongGuesses}
+        </p>
 
         {/* Keyboard */}
         <Keyboard
@@ -86,19 +112,31 @@ export default function GameBoard({
 
         {/* Reset button */}
         <button
-            onClick={resetGame}
-            style={{
-            marginTop: "20px",
+          onClick={resetGame}
+          onMouseEnter={() => setHoverReset(true)}
+          onMouseLeave={() => setHoverReset(false)}
+          style={{
+            width: "220px",         
+            height: "60px",
+            fontSize: "1.2rem",
+            marginTop: "30px",
             padding: "10px 20px",
-            borderRadius: "8px",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
+            borderRadius: "30px",      
+            backgroundColor: hoverReset ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.05)",
+            color: hoverReset ? "#000" : "#111",
+            border: "3px solid #000",
             cursor: "pointer",
-            }}
+            fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",
+            transition: "all 0.2s ease-in-out",
+            boxShadow: hoverReset ? "2px 2px 0px #000" : "1px 1px 0px #333",
+            transform: hoverReset ? "scale(1.05) rotate(-1deg)" : "scale(1) rotate(0deg)",
+          }}
         >
-            Play Again
+          Play Again
         </button>
+
+
+
         </div>
     </div>
   );

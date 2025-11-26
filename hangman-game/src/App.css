@@ -20,23 +20,21 @@ body {
   border: none;
   background-color: transparent;
 }
+
 .keyboard {
-  margin-left: 25%;
+  margin-left: 20%;
   margin-top: 10%;
-  width: 48%;
+  width: 60%;
   height: 25vh;
   z-index: 0;
 }
 
-.letter-key {
-  margin: 0.1rem 0.2rem;
-  width: 2rem;
-  height: 2rem;
-  font-size: 1.5rem;
-  border: none;
-  background-color: transparent;
+@media (min-width: 540px) {
+  .keyboard {
+    width: 55%;
+    margin-left: 25%;
+  }
 }
-
 #black {
   color: black;
 }
@@ -71,4 +69,3 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
