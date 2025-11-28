@@ -47,7 +47,7 @@ export default function GameBoard({
         <div
             style={{
                 display: "flex",
-                alignItems: "center",
+                alignItems: "center", 
                 justifyContent: "center",
                 fontSize: "1.3rem",
                 gap: "2rem",
@@ -119,7 +119,7 @@ export default function GameBoard({
             width: "220px",         
             height: "60px",
             fontSize: "1.2rem",
-            marginTop: "30px",
+            marginTop: "20px",
             padding: "10px 20px",
             borderRadius: "30px",      
             backgroundColor: hoverReset ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.05)",
