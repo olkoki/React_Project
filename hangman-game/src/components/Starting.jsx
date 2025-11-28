@@ -1,15 +1,17 @@
 import React from "react";
 
-function StartingWindow=()=> {
+StartingWindow=()=> {
     return (
 <div 
-style=  {{ width: 48%;
-  height: 30vh;
-  backgroundColor="#FFFAA0"
+style=  {{ width: "48%",
+  height: "50vh",
+  width: "50vh",
+  backgroundColor:"#FFFAA0"
+  
 }}>
   <h2>This is Hangman Game</h2>
   <p>Created by Alexandra, Matea, Mariana and Angela</p>
-  <p>With ReDi School for Digital Integration</p>
+  <p>With <a href="https://www.redi-school.org/redi-school-denmark" target="_blank" rel="noopener">ReDi School for Digital Integration</a></p>
   <button onClick={} style={}>Play Game</button>
 </div>
     )
