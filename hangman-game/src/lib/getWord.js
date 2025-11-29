@@ -1,57 +1,40 @@
-// fall back option
 const wordsList = ["javascript", "react", "hangman", "component", "state"];
 
-// makes it all upper case and cleans any - or ' or spaces
-function cleaner(w) {
+/* function cleaner(w) {
   return w.replace(/[^a-zA-Z]/g, "").toUpperCase();
-}
+} */
 
-function fetchWithTimeout(url, options = {}, timeout = 1000) {
-  return Promise.race([
-    fetch(url, options),
-    new Promise((_, reject) =>
-      setTimeout(() => reject(new Error("timeout")), timeout)
-    )
-  ]);
-}
+function validateWord(word, fallback) {
+  const regex = /^[a-zA-Z]+$/; // only letters
 
-export async function fetchRandomWordOnce({ min = 4, max = 10 } = {}) {
-  const setLength = Math.floor(Math.random() * (max - min + 1)) + min;
-  const url = `https://random-word-api.herokuapp.com/word?number=1&length=${setLength}`;
-
-  try {
-    const res = await fetchWithTimeout(url, {}, 1000);
-
-    if (!res.ok) return null;
-
-    const arr = await res.json();
-    const raw = Array.isArray(arr) ? arr[0] : "";
-    const clean = cleaner(raw);
-
-    return { raw, clean };
-
-  } catch (err) {
-    console.error("Fetch failed or timed out:", err);
-    return null;
+  if (regex.test(word)) {
+    return word.toUpperCase();
+  } else {
+    return fallback.toUpperCase();
   }
 }
 
-export async function getWord({ min = 4, max = 10 } = {}) {
-  //changed from 3 to 1 attempt
-  for (let i = 0; i < 1; i++){
-    const result = await fetchRandomWordOnce({ min, max });
+export async function getWord(url) {
 
-    if (!result) continue;
+    const fallbackWord = wordsList[Math.floor(Math.random() * wordsList.length)];
+  return new Promise(async resolve => {
 
-    const { raw, clean } = result;
+    const timer = setTimeout(() => {
+      resolve(fallbackWord); // if timer wins, return the fallback
+    }, 5000);
 
-    if (clean && clean.length === raw.length) {
-      return clean;
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+      const movieTitle = json[0].original_title;
+
+      clearTimeout(timer);
+      console.log(`API jsonfakery fetched word: ${movieTitle}`);
+
+      resolve(validateWord(movieTitle, fallbackWord)); // if fetch wins, validate word and then return winner
+    } catch (err) {
+      clearTimeout(timer);
+      resolve(fallbackWord); // if fetch fails, return fallback word
     }
-  }
-
-  const fallbackWord =
-    wordsList[Math.floor(Math.random() * wordsList.length)];
-
-  return cleaner(fallbackWord);
+  });
 }
