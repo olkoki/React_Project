@@ -13,9 +13,11 @@ export default function Stickman({ wrongGuesses }) {
       {wrongGuesses > 4 && <div className={styles.leftLeg}></div>}
       {wrongGuesses > 5 && <div className={styles.rightLeg}></div>}
       {wrongGuesses > 5 && (
-        <div className={styles.deadFace}>
-          <span>X</span>
-          <span>X</span>
+        <div className={styles.head}>
+          <div className={styles.deadFace}>
+            <span>X</span>
+            <span>X</span>
+          </div>
         </div>
       )}
     </div>
