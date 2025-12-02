@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getWord } from "../lib/getWord";
 import GameBoard from "./GameBoard";
-import CategoryOverlay from "./CategoryOverlay";
+import CategoryOverlay from "./CategoryOverlay/CategoryOverlay";
 
 export default function Game() {
   const [word, setWord] = useState("");
@@ -57,7 +57,7 @@ export default function Game() {
 
     const randomLetter =
       remainingLetters[Math.floor(Math.random() * remainingLetters.length)];
-    
+
     setGuessedLetters((prev) => [...prev, randomLetter]);
     setHintsLeft((prev) => prev - 1);
   };
