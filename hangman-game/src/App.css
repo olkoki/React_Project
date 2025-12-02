@@ -21,6 +21,20 @@ body {
   background-color: transparent;
 }
 
+.keyboard {
+  margin-left: 20%;
+  margin-top: 10%;
+  width: 60%;
+  height: 25vh;
+  z-index: 0;
+}
+
+@media (min-width: 540px) {
+  .keyboard {
+    width: 55%;
+    margin-left: 25%;
+  }
+}
 #black {
   color: black;
 }
@@ -31,4 +45,27 @@ body {
 
 #green {
   color: green;
+}
+
+.game-board {
+  max-width: 500px;
+  margin: auto;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.letter-key {
+  margin: 2px;
+  padding: 8px 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.letter-key:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
