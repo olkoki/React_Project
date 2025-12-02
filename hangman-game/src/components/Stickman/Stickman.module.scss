@@ -1,6 +1,6 @@
 :root {
-  --stand-border: 2px solid #000;
-  --stickman-border: 1px solid #000;
+  --stand-border: 3px solid #000;
+  --stickman-border: 3px solid #000;
   --stickman-color: #000;
 }
 
@@ -50,9 +50,9 @@
 
 .body {
   position: absolute;
-  top: 41%;
+  top: 42%;
   right: 40%;
-  width: 2px;
+  width: 3px;
   height: 40%;
   background-color: var(--stickman-color);
 }
@@ -61,8 +61,8 @@
   position: absolute;
   top: 50%;
   right: 40%;
-  width: 25%;
-  height: 2px;
+  width: 26%;
+  height: 3px;
   background-color: var(--stickman-color);
   transform: rotate(-45deg);
   transform-origin: right;
@@ -71,9 +71,9 @@
 .rightArm {
   position: absolute;
   top: 51%;
-  right: 40%;
+  right: 41%;
   width: 25%;
-  height: 2px;
+  height: 3px;
   background-color: var(--stickman-color);
   transform: rotate(-140deg);
   transform-origin: right;
@@ -84,7 +84,7 @@
   top: 80%;
   right: 41%;
   width: 25%;
-  height: 2px;
+  height: 3px;
   background-color: var(--stickman-color);
   transform: rotate(-140deg);
   transform-origin: right;
@@ -95,16 +95,16 @@
   top: 80%;
   right: 41%;
   width: 25%;
-  height: 2px;
+  height: 3px;
   background-color: var(--stickman-color);
   transform: rotate(-45deg);
   transform-origin: right;
 }
 .deadFace {
-  position: absolute;
   display: flex;
-  top: 24%;
-  right: 32%;
+  justify-content: center;
+  margin-top: 4px;
   gap: 0.4rem;
   font-size: 0.8rem;
+  font-weight: 700;
 }
