@@ -17,13 +17,12 @@ function Popup() {
       <div className={styles.overlay} />
       <div className={styles.popup} onClick={handleClose}>
         <div className={styles.popupInner} onClick={handleClose}>
+          <h1>Welcome to Hangman!</h1>
           <img
             src={stickmanSign}
-            alt="post-it note"
-            className={styles.postit}
-          />
-          <h1>Welcome to Hangman!</h1>
-          <p className={styles.startText}>Click anywhere to start the game</p>
+            alt="stickman holding a start sign"
+            className={styles.stickman}
+          ></img>
           <p className={styles.signature}>
             Made by Angela, Mariana, Matea and Ola
           </p>
