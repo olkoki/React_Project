@@ -52,7 +52,15 @@ export default function GameBoard({
           }}
         >
           <Stickman wrongGuesses={wrongGuesses} />
-          <h2 style={{ letterSpacing: "0.5px", fontFamily: "monospace" }}>
+          <h2
+            style={{
+              maxWidth: "250px",
+              letterSpacing: "0.5px",
+              fontFamily: "monospace",
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-word",
+            }}
+          >
             {displayWord}
           </h2>
         </div>

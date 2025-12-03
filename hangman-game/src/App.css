@@ -35,6 +35,13 @@ body {
     margin-left: 25%;
   }
 }
+
+@media (max-width: 480px) {
+  .keyboard {
+    width: 70%;
+    margin-top: 8%;
+  }
+}
 #black {
   color: black;
 }
@@ -68,4 +75,58 @@ body {
 .letter-key:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Mobile - smaller keys */
+@media (max-width: 480px) {
+  .letter-key {
+    padding: 5px 7px;
+    font-size: 13px;
+    margin: 1px;
+  }
+}
+
+/* Tablet - medium keys */
+@media (max-width: 768px) and (min-width: 481px) {
+  .letter-key {
+    padding: 6px 9px;
+    font-size: 14px;
+    margin: 2px;
+  }
+}
+
+/* Desktop and larger - keep original */
+@media (min-width: 769px) {
+  .letter-key {
+    padding: 8px 10px;
+    font-size: 16px;
+    margin: 2px;
+  }
+}
+
+/* Mobile - smaller keys */
+@media (max-width: 480px) {
+  .letter-key {
+    padding: 6px 8px;
+    font-size: 14px;
+    margin: 1px;
+  }
+}
+
+/* Tablet - medium keys */
+@media (max-width: 768px) and (min-width: 481px) {
+  .letter-key {
+    padding: 7px 9px;
+    font-size: 15px;
+    margin: 2px;
+  }
+}
+
+/* Desktop and larger - keep same */
+@media (min-width: 769px) {
+  .letter-key {
+    padding: 8px 10px;
+    font-size: 16px;
+    margin: 2px;
+  }
 }

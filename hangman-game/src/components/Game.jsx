@@ -67,9 +67,15 @@ export default function Game() {
     .every((letter) => guessedLetters.includes(letter));
   const isLoser = wrongGuesses >= maxWrongGuesses;
 
+  // Build display string using regular spaces and preserve word gaps.
+  const guessedSet = new Set(guessedLetters.map((c) => c.toUpperCase()));
   const displayWord = word
     .split("")
-    .map((letter) => (guessedLetters.includes(letter) ? letter : "_"))
+    .map((ch) => {
+      if (ch === " ") return ""; // visible word gap
+      const up = ch.toUpperCase();
+      return guessedSet.has(up) ? ch : "_";
+    })
     .join(" ");
 
   const resetGame = async () => {

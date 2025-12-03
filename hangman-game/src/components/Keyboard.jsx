@@ -24,7 +24,6 @@ function Keyboard({
                 : !guessedLetters.includes(letter)
                 ? "black"
                 : "red",
-                
           }}
         >
           {letter}
