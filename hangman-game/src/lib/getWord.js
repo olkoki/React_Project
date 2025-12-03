@@ -1,4 +1,4 @@
-const wordsList = ["javascript", "react", "hangman", "component", "state"];
+const wordsList = ["javascript is best"];
 
 /* function cleaner(w) {
   return w.replace(/[^a-zA-Z]/g, "").toUpperCase();
@@ -15,10 +15,8 @@ function validateWord(word, fallback) {
 }
 
 export async function getWord(url) {
-
-    const fallbackWord = wordsList[Math.floor(Math.random() * wordsList.length)];
-  return new Promise(async resolve => {
-
+  const fallbackWord = wordsList[Math.floor(Math.random() * wordsList.length)];
+  return new Promise(async (resolve) => {
     const timer = setTimeout(() => {
       resolve(fallbackWord); // if timer wins, return the fallback
     }, 5000);

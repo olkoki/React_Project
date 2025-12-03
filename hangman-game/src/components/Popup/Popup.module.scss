@@ -1,0 +1,89 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popupInner {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  max-height: 200px;
+  background-image: url("https://spaces-cdn.clipsafari.com/82vy12dc9ldtp3q4iohcgh9x348u");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  font-family: "Great Vibes", "Lucida Handwriting", "Brush Script MT", cursive;
+
+  /* Post-it note edge blur effect */
+  &::before {
+    content: "";
+    position: absolute;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin: 0;
+    color: #222;
+    font-weight: 400;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    letter-spacing: 0.05em;
+  }
+}
+
+.popupInner .signature {
+  color: rgb(145, 140, 140);
+  font-size: 12px;
+  width: 100%;
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  margin: 0;
+}
+
+.stickman {
+  margin-top: 10px;
+  max-height: 350px;
+  max-width: 118px;
+}
+
+@media (max-width: 600px) {
+  .popupInner {
+    max-width: 90%;
+    padding: 2rem 1.5rem;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+  }
+
+  .start {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}

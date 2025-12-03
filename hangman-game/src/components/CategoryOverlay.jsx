@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import CategoryTile from "./CategoryTile";
-import CategoryForm from "./CategoryForm";
+import CategoryTile from "./CategoryTile/CategoryTile";
+import CategoryForm from "./CategoryForm/CategoryForm";
 
 export default function CategoryOverlay({ onClose, onSelectCategory }) {
   const [categories, setCategories] = useState([]);
@@ -31,28 +31,26 @@ export default function CategoryOverlay({ onClose, onSelectCategory }) {
   };
 
   const deleteCategory = (cat) => {
-  if (!window.confirm(`Delete category "${cat.name}"?`)) return;
+    if (!window.confirm(`Delete category "${cat.name}"?`)) return;
 
-  const updated = categories.filter((c) => c.name !== cat.name);
-  setCategories(updated);
-  localStorage.setItem("categories", JSON.stringify(updated));
-};
+    const updated = categories.filter((c) => c.name !== cat.name);
+    setCategories(updated);
+    localStorage.setItem("categories", JSON.stringify(updated));
+  };
 
+  //   const exportCategory = (category) => {
+  //     if (!category) return;
 
-//   const exportCategory = (category) => {
-//     if (!category) return;
+  //     const dataStr =
+  //         "data:text/json;charset=utf-8," +
+  //         encodeURIComponent(JSON.stringify(category, null, 2));
+  //     const dlAnchorElem = document.createElement("a");
+  //     dlAnchorElem.setAttribute("href", dataStr);
+  //     dlAnchorElem.setAttribute("download", `${category.name}.json`);
+  //     dlAnchorElem.click();
+  // };
 
-//     const dataStr =
-//         "data:text/json;charset=utf-8," +
-//         encodeURIComponent(JSON.stringify(category, null, 2));
-//     const dlAnchorElem = document.createElement("a");
-//     dlAnchorElem.setAttribute("href", dataStr);
-//     dlAnchorElem.setAttribute("download", `${category.name}.json`);
-//     dlAnchorElem.click();
-// };
-
-//^ Not working right now, 
-
+  //^ Not working right now,
 
   return (
     <div style={overlayStyle}>
@@ -69,7 +67,6 @@ export default function CategoryOverlay({ onClose, onSelectCategory }) {
                 onDelete={null}
               />
 
-
               {/* Custom categories */}
               {categories.map((cat, i) => (
                 <CategoryTile
@@ -77,30 +74,35 @@ export default function CategoryOverlay({ onClose, onSelectCategory }) {
                   category={cat}
                   onSelect={() => onSelectCategory(cat.words, cat.name)}
                   onEdit={() => editCategory(cat)}
-                  onDelete={() => deleteCategory(cat)}   // only for custom
+                  onDelete={() => deleteCategory(cat)} // only for custom
                 />
               ))}
-
-
-
             </div>
 
-            <div style={{marginBottom: "12px"}}>
-                <div
-                    style={newTileStyle}
-                    onClick={() => setCreating(true)}
-                    onMouseEnter={(e) => Object.assign(e.currentTarget.style, newTileHover)}
-                    onMouseLeave={(e) => Object.assign(e.currentTarget.style, newTileStyle)}
-                >
-                    + Create New Category
-                </div>
+            <div style={{ marginBottom: "12px" }}>
+              <div
+                style={newTileStyle}
+                onClick={() => setCreating(true)}
+                onMouseEnter={(e) =>
+                  Object.assign(e.currentTarget.style, newTileHover)
+                }
+                onMouseLeave={(e) =>
+                  Object.assign(e.currentTarget.style, newTileStyle)
+                }
+              >
+                + Create New Category
+              </div>
             </div>
 
             <button
               style={buttonStyle}
               onClick={onClose}
-              onMouseEnter={(e) => Object.assign(e.currentTarget.style, buttonHover)}
-              onMouseLeave={(e) => Object.assign(e.currentTarget.style, buttonStyle)}
+              onMouseEnter={(e) =>
+                Object.assign(e.currentTarget.style, buttonHover)
+              }
+              onMouseLeave={(e) =>
+                Object.assign(e.currentTarget.style, buttonStyle)
+              }
             >
               Close
             </button>
@@ -133,9 +135,42 @@ const overlayStyle = {
   justifyContent: "center",
   zIndex: 99999,
 };
-const windowStyle = { background: "white", padding: "2rem", borderRadius: "12px", width: "90%", maxWidth: "480px", boxShadow: "0 8px 28px rgba(0,0,0,0.15)", textAlign: "center" };
-const gridStyle = { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "12px", marginBottom: "20px" };
-const newTileStyle = { background: "#f5f5f5", padding: "20px", borderRadius: "10px", cursor: "pointer", textAlign: "center", fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.2s, transform 0.15s" };
+const windowStyle = {
+  background: "white",
+  padding: "2rem",
+  borderRadius: "12px",
+  width: "90%",
+  maxWidth: "480px",
+  boxShadow: "0 8px 28px rgba(0,0,0,0.15)",
+  textAlign: "center",
+};
+const gridStyle = {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gap: "12px",
+  marginBottom: "20px",
+};
+const newTileStyle = {
+  background: "#f5f5f5",
+  padding: "20px",
+  borderRadius: "10px",
+  cursor: "pointer",
+  textAlign: "center",
+  fontWeight: 600,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "background 0.2s, transform 0.15s",
+};
 const newTileHover = { background: "#e0e0e0", transform: "scale(1.03)" };
-const buttonStyle = { padding: "0.6rem 1.2rem", borderRadius: "8px", border: "none", background: "#222", color: "white", fontWeight: 500, cursor: "pointer", transition: "background 0.2s" };
+const buttonStyle = {
+  padding: "0.6rem 1.2rem",
+  borderRadius: "8px",
+  border: "none",
+  background: "#222",
+  color: "white",
+  fontWeight: 500,
+  cursor: "pointer",
+  transition: "background 0.2s",
+};
 const buttonHover = { background: "#000" };
