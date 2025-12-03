@@ -2,8 +2,8 @@ import styles from "./CategoryTile.module.scss";
 
 export default function CategoryTile({ category, onSelect, onEdit, onDelete }) {
   return (
-    <div className={styles.container}>
-      <span onClick={onSelect}>{category.name}</span>
+    <div className={styles.container} onClick={onSelect}>
+      <span>{category.name}</span>
 
       <div className={styles.buttonContainer}>
         {onEdit && (
