@@ -1,4 +1,18 @@
-const wordsList = ["javascript is best"];
+const wordsList = [
+  "Harry Potter",
+  "Memento",
+  "Interstellar",
+  "Life of Brian",
+  "Star Wars",
+  "Blade Runner",
+  "Wild Robot",
+  "Carnage",
+  "La La Land",
+  "Up",
+  "Home Alone",
+  "Hair",
+  "Pulp Fiction",
+];
 
 /* function cleaner(w) {
   return w.replace(/[^a-zA-Z]/g, "").toUpperCase();
